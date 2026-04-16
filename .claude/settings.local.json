@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run:*)",
+      "Bash(python3 -c ':*)",
+      "Bash(pip install:*)",
+      "Bash(python -c ':*)",
+      "Bash(\"C:/Program Files/Python313/python.exe\" -m pip install pdfminer.six -q)",
+      "Bash('C:/Program Files/Python313/python.exe' -c ':*)",
+      "Bash(\"C:/Program Files/Python313/python.exe\" -m pip install pymupdf -q)",
+      "Bash(npx next:*)",
+      "WebFetch(domain:kim-ji-min.github.io)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\hongk\\.claude\\projects\\c--Users-hongk-Desktop-portfolio\\memory"
+    ]
+  }
+}
