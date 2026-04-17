@@ -10,7 +10,12 @@
       "Bash('C:/Program Files/Python313/python.exe' -c ':*)",
       "Bash(\"C:/Program Files/Python313/python.exe\" -m pip install pymupdf -q)",
       "Bash(npx next:*)",
-      "WebFetch(domain:kim-ji-min.github.io)"
+      "WebFetch(domain:kim-ji-min.github.io)",
+      "Bash(cp \"nodejs/node 강의.jpg\" \"nodejs/node-lecture.jpg\")",
+      "Bash(cp \"react/React 강의.png\" \"react/react-lecture.png\")",
+      "Bash(cp \"aws/aws 강의.png\" \"aws/aws-lecture.png\")",
+      "Bash(cp \"kotlin/kotlin 강의.png\" \"kotlin/kotlin-lecture.png\")",
+      "Bash(cp \"mirae-1st/1학년 미래인재 수상.jpg\" \"mirae-1st/award.jpg\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\hongk\\.claude\\projects\\c--Users-hongk-Desktop-portfolio\\memory"
