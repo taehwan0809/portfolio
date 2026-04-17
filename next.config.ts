@@ -1,9 +1,10 @@
 import type { NextConfig } from "next";
 
+const isProd = process.env.NODE_ENV === "production";
+
 const nextConfig: NextConfig = {
   output: "export",
-  // 레포 이름이 portfolio라면 "/portfolio", username.github.io라면 ""
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH || "",
+  basePath: isProd ? "/portfolio" : "",
   images: {
     unoptimized: true,
   },
