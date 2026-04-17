@@ -37,7 +37,7 @@ export default function About() {
           {/* Photo */}
           <div className="relative w-[34%] flex-shrink-0 overflow-hidden bg-black/20">
             <Image
-              src="/whoami.png"
+              src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/whoami.png`}
               alt="박태환"
               fill
               className="object-contain object-bottom scale-105"

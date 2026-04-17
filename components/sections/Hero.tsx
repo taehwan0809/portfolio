@@ -144,7 +144,7 @@ export default function Hero() {
           className="w-full h-full"
         >
           <Image
-            src="/main-photo.jpg"
+            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/main-photo.jpg`}
             alt="박태환"
             fill
             priority

@@ -102,7 +102,7 @@ export default function Experience() {
                       className="absolute inset-0"
                     >
                       <Image
-                        src={images[imgIdx]}
+                        src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${images[imgIdx]}`}
                         alt={exp.title}
                         fill
                         className="object-cover object-center"

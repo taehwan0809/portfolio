@@ -111,7 +111,7 @@ export default function Projects() {
                   className="absolute inset-0"
                 >
                   <Image
-                    src={project.images[imgIdx]}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${project.images[imgIdx]}`}
                     alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
                     fill
                     className="object-contain"
