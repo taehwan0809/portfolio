@@ -13,6 +13,7 @@ export default function Projects() {
 
   const total = projects.length;
   const project = projects[projectIdx];
+  const imageTotal = project.images.length;
 
   // Reset image index when project changes
   useEffect(() => { setImgIdx(0); }, [projectIdx]);
@@ -37,13 +38,11 @@ export default function Projects() {
     return () => window.removeEventListener("keydown", handler);
   }, [prevProject, nextProject]);
 
-  const prevImg = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setImgIdx((i) => (i - 1 + project.images.length) % project.images.length);
+  const prevImg = () => {
+    setImgIdx((i) => (i - 1 + imageTotal) % imageTotal);
   };
-  const nextImg = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    setImgIdx((i) => (i + 1) % project.images.length);
+  const nextImg = () => {
+    setImgIdx((i) => (i + 1) % imageTotal);
   };
 
   const slideVariants = {
@@ -55,33 +54,17 @@ export default function Projects() {
   return (
     <section id="projects" className="snap-section flex flex-col">
       {/* ── Top bar ── */}
-      <div className="flex items-center justify-between px-6 md:px-12 pt-16 pb-0 flex-shrink-0">
+      <div className="flex flex-shrink-0 items-center justify-between px-6 pb-5 pt-16 md:px-12">
         <div>
           <p className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.3em]">Projects</p>
           <p className="text-white/40 text-xs font-mono mt-0.5">
             {String(projectIdx + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
           </p>
         </div>
-
-        {/* Prev / Next */}
-        <div className="flex items-center gap-2">
-          <button
-            onClick={prevProject}
-            className="w-9 h-9 rounded-full glass border border-white/10 hover:border-white/25 flex items-center justify-center transition-all"
-          >
-            <ChevronLeft size={15} className="text-white/60" />
-          </button>
-          <button
-            onClick={nextProject}
-            className="w-9 h-9 rounded-full glass border border-white/10 hover:border-white/25 flex items-center justify-center transition-all"
-          >
-            <ChevronRight size={15} className="text-white/60" />
-          </button>
-        </div>
       </div>
 
       {/* ── Main content ── */}
-      <div className="flex-1 flex min-h-0">
+      <div className="flex min-h-0 flex-1">
         <AnimatePresence mode="wait" custom={dir}>
           <motion.div
             key={project.id}
@@ -91,87 +74,84 @@ export default function Projects() {
             animate="center"
             exit="exit"
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
-            className="flex-1 grid md:grid-cols-[55%_45%] min-h-0"
+            className="grid min-h-0 flex-1 md:grid-cols-[55%_45%]"
           >
             {/* ── Left: Image carousel ── */}
-            <div className="relative bg-black/30 overflow-hidden group">
-              {/* Accent gradient overlay */}
-              <div
-                className="absolute inset-0 opacity-20 z-10 pointer-events-none"
-                style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}33, transparent 70%)` }}
-              />
+            <div className="flex flex-col justify-center bg-black/20 px-5 pb-6 md:px-10 md:pb-10">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl bg-black/30 md:rounded-[28px]">
+                <div
+                  className="absolute inset-0 opacity-20 z-10 pointer-events-none"
+                  style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}33, transparent 70%)` }}
+                />
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={imgIdx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${project.images[imgIdx]}`}
-                    alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </motion.div>
-              </AnimatePresence>
-
-              {/* Image nav arrows */}
-              {project.images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImg}
-                    className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={imgIdx}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0"
                   >
-                    <ChevronLeft size={14} className="text-white" />
-                  </button>
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${project.images[imgIdx]}`}
+                      alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+
+              {imageTotal > 1 && (
+                <div className="mt-3 flex items-center justify-center gap-3">
                   <button
-                    onClick={nextImg}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-black/60 hover:bg-black/80 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      prevImg();
+                    }}
+                    aria-label="이전 스크린샷 보기"
+                    className="relative z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 transition-all hover:bg-white/[0.08] hover:text-white/60"
                   >
-                    <ChevronRight size={14} className="text-white" />
+                    <ChevronLeft size={13} />
                   </button>
-
-                  {/* Image dots */}
-                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-1.5">
-                    {project.images.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={(e) => { e.stopPropagation(); setImgIdx(i); }}
-                        className={`rounded-full transition-all duration-200 ${
-                          i === imgIdx ? "w-4 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30 hover:bg-white/60"
-                        }`}
-                      />
-                    ))}
+                  <div className="min-w-10 text-center font-mono text-[11px] text-white/35">
+                    {imgIdx + 1} / {imageTotal}
                   </div>
-
-                  {/* Image counter */}
-                  <div className="absolute top-4 right-4 z-20 px-2 py-0.5 rounded-full bg-black/50 text-white/70 text-[10px] font-mono">
-                    {imgIdx + 1} / {project.images.length}
-                  </div>
-                </>
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      nextImg();
+                    }}
+                    aria-label="다음 스크린샷 보기"
+                    className="relative z-20 flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 transition-all hover:bg-white/[0.08] hover:text-white/60"
+                  >
+                    <ChevronRight size={13} />
+                  </button>
+                </div>
               )}
             </div>
 
             {/* ── Right: Project info ── */}
-            <div className="flex flex-col justify-between px-8 md:px-10 py-8 md:py-10 overflow-y-auto">
+            <div className="flex flex-col justify-between overflow-y-visible px-6 py-7 md:overflow-y-auto md:px-10 md:py-10">
               <div>
                 {/* Index */}
-                <p className="text-[10px] font-mono text-white/45 uppercase tracking-widest mb-4">
+                <p className="mb-3 text-[10px] font-mono uppercase tracking-widest text-white/45 md:mb-4">
                   Project {String(projectIdx + 1).padStart(2, "0")}
                 </p>
 
                 {/* Title */}
-                <h2 className="text-3xl md:text-4xl font-black text-white tracking-tight leading-none mb-3">
+                <h2 className="mb-3 text-3xl font-black leading-none tracking-tight text-white md:text-4xl">
                   {project.title}
                 </h2>
 
                 {/* Meta */}
-                <div className="flex flex-wrap gap-3 mb-4 text-xs text-white/55">
+                <div className="mb-4 flex flex-wrap gap-3 text-xs text-white/55">
                   <span className="flex items-center gap-1.5"><Monitor size={11} />{project.platform}</span>
                   <span className="flex items-center gap-1.5"><Users size={11} />{project.teamSize}</span>
                   <span>⏱ {project.period}</span>
@@ -181,7 +161,7 @@ export default function Projects() {
                 )}
 
                 {/* Description */}
-                <p className="text-white/75 text-sm leading-relaxed mb-3">
+                <p className="mb-3 text-sm leading-relaxed text-white/75">
                   {project.longDescription}
                 </p>
 
@@ -210,46 +190,57 @@ export default function Projects() {
               </div>
 
               {/* Links */}
-              <div className="flex items-center gap-3 pt-6 border-t border-white/10 mt-6">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-white/70 hover:text-white text-xs font-medium transition-all border border-white/15 hover:border-white/20"
-                  >
-                    <Github size={13} />
-                    GitHub
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-white/70 hover:text-white text-xs font-medium transition-all border border-white/15 hover:border-white/20"
-                  >
-                    <ExternalLink size={13} />
-                    Demo
-                  </a>
-                )}
+              <div className="mt-6 border-t border-white/10 pt-6">
+                <div className="flex flex-wrap items-center gap-3">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-white/70 hover:text-white text-xs font-medium transition-all border border-white/15 hover:border-white/20"
+                    >
+                      <Github size={13} />
+                      GitHub
+                    </a>
+                  )}
+                  {project.demo && (
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 glass rounded-xl text-white/70 hover:text-white text-xs font-medium transition-all border border-white/15 hover:border-white/20"
+                    >
+                      <ExternalLink size={13} />
+                      Demo
+                    </a>
+                  )}
+                </div>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* ── Bottom: project dots ── */}
-      <div className="flex items-center justify-center gap-1.5 pb-5 flex-shrink-0">
-        {projects.map((_, i) => (
+      <div className="flex-shrink-0 px-6 pb-8 md:pb-6">
+        <div className="mx-auto flex w-fit items-center gap-5 rounded-full border border-white/10 bg-black/25 px-4 py-2 backdrop-blur-md">
           <button
-            key={i}
-            onClick={() => { setDir(i > projectIdx ? 1 : -1); setProjectIdx(i); }}
-            className={`rounded-full transition-all duration-200 ${
-              i === projectIdx ? "w-5 h-1.5 bg-indigo-400" : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-            }`}
-          />
-        ))}
+            onClick={prevProject}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-all hover:bg-white/90"
+            aria-label="이전 프로젝트 보기"
+          >
+            <ChevronLeft size={18} />
+          </button>
+          <div className="min-w-16 text-center font-mono text-sm text-white/70">
+            {projectIdx + 1} / {total}
+          </div>
+          <button
+            onClick={nextProject}
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-white text-black transition-all hover:bg-white/90"
+            aria-label="다음 프로젝트 보기"
+          >
+            <ChevronRight size={18} />
+          </button>
+        </div>
       </div>
     </section>
   );

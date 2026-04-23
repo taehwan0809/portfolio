@@ -13,14 +13,14 @@ const c = (delay = 0) => ({
 
 export default function About() {
   return (
-    <section id="about" className="snap-section flex flex-col justify-center px-6 md:px-16 lg:px-24">
+    <section id="about" className="snap-section flex flex-col justify-center px-6 py-20 md:px-16 md:py-0 lg:px-24">
       <motion.p {...c(0)} className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.3em] mb-5">
         About Me
       </motion.p>
 
       <motion.h2
         {...c(0.05)}
-        className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-10 md:mb-12"
+        className="mb-8 text-4xl font-black leading-none tracking-tight md:mb-12 md:text-6xl lg:text-7xl"
       >
         만들고,{" "}
         <span className="text-white/40">부딪히고,</span>{" "}
@@ -28,14 +28,14 @@ export default function About() {
       </motion.h2>
 
       {/* Bento grid */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-3" style={{ gridAutoRows: "160px" }}>
+      <div className="grid grid-cols-2 gap-3 [grid-auto-rows:minmax(118px,auto)] md:grid-cols-4 md:[grid-auto-rows:160px]">
         {/* Bio — 2×2 */}
         <motion.div
           {...c(0.1)}
-          className="col-span-2 row-span-2 glass rounded-3xl flex relative overflow-hidden"
+          className="glass relative col-span-2 row-span-2 flex flex-col overflow-hidden rounded-3xl sm:flex-row"
         >
           {/* Photo */}
-          <div className="relative w-[34%] flex-shrink-0 overflow-hidden bg-black/20">
+          <div className="relative h-44 flex-shrink-0 overflow-hidden bg-black/20 sm:h-auto sm:w-[34%]">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/whoami.png`}
               alt="박태환"
@@ -47,7 +47,7 @@ export default function About() {
           </div>
 
           {/* Text */}
-          <div className="flex flex-col justify-between p-5 flex-1 relative">
+          <div className="relative flex flex-1 flex-col justify-between gap-5 p-5">
             <div className="absolute -bottom-6 -right-6 w-36 h-36 rounded-full bg-indigo-500/20 blur-3xl pointer-events-none" />
             <p className="text-[10px] font-mono text-white/45 uppercase tracking-widest">Who I am</p>
             <div className="space-y-2.5">
@@ -71,7 +71,7 @@ export default function About() {
         </motion.div>
 
         {/* 8+ Awards */}
-        <motion.div {...c(0.12)} className="glass rounded-3xl p-5 flex flex-col justify-between">
+        <motion.div {...c(0.12)} className="glass flex flex-col justify-between rounded-3xl p-4 md:p-5">
           <p className="text-[10px] font-mono text-white/45">Awards</p>
           <div>
             <p className="text-4xl md:text-5xl font-black text-white leading-none">8<span className="text-yellow-400">+</span></p>
@@ -80,7 +80,7 @@ export default function About() {
         </motion.div>
 
         {/* 11+ Projects */}
-        <motion.div {...c(0.14)} className="glass rounded-3xl p-5 flex flex-col justify-between">
+        <motion.div {...c(0.14)} className="glass flex flex-col justify-between rounded-3xl p-4 md:p-5">
           <p className="text-[10px] font-mono text-white/45">Projects</p>
           <div>
             <p className="text-4xl md:text-5xl font-black text-white leading-none">10<span className="text-violet-400">+</span></p>
@@ -89,7 +89,7 @@ export default function About() {
         </motion.div>
 
         {/* School */}
-        <motion.div {...c(0.16)} className="glass rounded-3xl p-5 flex flex-col justify-between">
+        <motion.div {...c(0.16)} className="glass flex flex-col justify-between rounded-3xl p-4 md:p-5">
           <MapPin size={14} className="text-indigo-400" />
           <div>
             <p className="text-white/85 text-xs font-semibold leading-snug">세명컴퓨터고등학교</p>
@@ -98,7 +98,7 @@ export default function About() {
         </motion.div>
 
         {/* Birth */}
-        <motion.div {...c(0.18)} className="glass rounded-3xl p-5 flex flex-col justify-between">
+        <motion.div {...c(0.18)} className="glass flex flex-col justify-between rounded-3xl p-4 md:p-5">
           <Calendar size={14} className="text-indigo-400" />
           <div>
             <p className="text-white/85 text-xs font-semibold">2008. 08. 09</p>
@@ -109,7 +109,7 @@ export default function About() {
         {/* 3연속 1등 */}
         <motion.div
           {...c(0.2)}
-          className="col-span-2 glass rounded-3xl p-5 flex items-center gap-4 relative overflow-hidden"
+          className="glass relative col-span-2 flex items-center gap-4 overflow-hidden rounded-3xl p-5"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-600/20 to-violet-600/15" />
           <p className="text-5xl md:text-6xl font-black text-white relative z-10">3</p>
@@ -120,7 +120,7 @@ export default function About() {
         </motion.div>
 
         {/* Links */}
-        <motion.div {...c(0.22)} className="col-span-2 glass rounded-3xl p-4 flex items-center gap-2">
+        <motion.div {...c(0.22)} className="glass col-span-2 flex flex-col items-stretch gap-2 rounded-3xl p-4 sm:flex-row sm:items-center">
           <a
             href="https://github.com/taehwan0809"
             target="_blank"

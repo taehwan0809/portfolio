@@ -17,7 +17,7 @@ export default function Hero() {
   return (
     <section id="hero" className="snap-section flex">
       {/* ── LEFT: text ── */}
-      <div className="relative z-10 flex flex-col justify-center px-8 md:px-16 lg:px-24 w-full md:w-[55%]">
+      <div className="relative z-10 flex w-full flex-col justify-center px-6 pb-20 pt-24 md:w-[55%] md:px-16 md:py-0 lg:px-24">
         {/* Glow */}
         <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[140px] pointer-events-none" />
 
@@ -27,7 +27,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-8"
+            className="mb-7 inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/10 px-3 py-1.5 text-xs font-medium text-emerald-400 md:mb-8"
           >
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             Open to opportunities
@@ -38,10 +38,10 @@ export default function Hero() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="font-black tracking-tight leading-none mb-3"
+            className="mb-3 font-black leading-none tracking-tight"
           >
-            <span className="block text-[clamp(3.5rem,10vw,7rem)] gradient-text">박태환</span>
-            <span className="block text-sm md:text-base font-light text-white/50 tracking-[0.35em] uppercase mt-2">
+            <span className="gradient-text block text-[clamp(3.25rem,18vw,7rem)]">박태환</span>
+            <span className="mt-2 block text-xs font-light uppercase tracking-[0.28em] text-white/50 md:text-base md:tracking-[0.35em]">
               Park Tae Hwan
             </span>
           </motion.h1>
@@ -52,7 +52,7 @@ export default function Hero() {
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.6, delay: 0.4, originX: 0 }}
             style={{ transformOrigin: "left" }}
-            className="h-px w-48 bg-gradient-to-r from-indigo-500/60 to-transparent my-7"
+            className="my-6 h-px w-40 bg-gradient-to-r from-indigo-500/60 to-transparent md:my-7 md:w-48"
           />
 
           {/* Rotating role */}
@@ -60,7 +60,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.45 }}
-            className="h-6 overflow-hidden mb-7"
+            className="mb-7 h-6 overflow-hidden"
           >
             <AnimatePresence mode="wait">
               <motion.p
@@ -81,7 +81,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 14 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.55 }}
-            className="text-white/60 text-sm md:text-base leading-relaxed mb-10 max-w-sm"
+            className="mb-9 max-w-sm text-sm leading-relaxed text-white/60 md:mb-10 md:text-base"
           >
             새로운 기술로 직접 만들어보는 것을 즐깁니다.{" "}
             <span className="text-white/80">Next.js · Python · Node.js · AWS</span>를 주로 사용합니다.
@@ -117,7 +117,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.0 }}
-            className="flex gap-8 mt-14 pt-8 border-t border-white/10"
+            className="mt-12 flex gap-6 border-t border-white/10 pt-7 md:mt-14 md:gap-8 md:pt-8"
           >
             {[
               { v: "10+", l: "Projects" },
@@ -158,7 +158,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 z-20"
+        className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-1 md:flex"
       >
         <span className="text-[9px] font-mono text-white/40 tracking-[0.25em] uppercase">scroll</span>
         <motion.div

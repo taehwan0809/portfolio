@@ -16,7 +16,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="snap-section flex flex-col items-center justify-center px-6 text-center">
+    <section id="contact" className="snap-section flex flex-col items-center justify-center px-6 py-20 text-center md:py-0">
       {/* Background text */}
       <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none select-none">
         <span className="text-[20vw] font-black text-white/[0.04] tracking-tighter leading-none">
@@ -24,7 +24,7 @@ export default function Contact() {
         </span>
       </div>
 
-      <div className="relative z-10 max-w-xl">
+      <div className="relative z-10 w-full max-w-xl">
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -39,7 +39,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tight leading-none mb-5"
+          className="mb-5 text-5xl font-black leading-none tracking-tight text-white md:text-7xl lg:text-8xl"
         >
           같이
           <br />
@@ -51,7 +51,7 @@ export default function Contact() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.15 }}
-          className="text-white/60 text-sm md:text-base mb-10"
+          className="mb-10 text-sm text-white/60 md:text-base"
         >
           새로운 기회, 협업 제안, 또는 그냥 안부도 환영합니다.
         </motion.p>
@@ -65,9 +65,9 @@ export default function Contact() {
           onClick={copy}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.97 }}
-          className="inline-flex items-center gap-3 px-7 py-4 rounded-2xl glass border border-white/20 hover:border-white/20 text-white/85 hover:text-white transition-all mb-8 group"
+          className="glass group mb-8 inline-flex w-full max-w-sm items-center justify-center gap-3 rounded-2xl border border-white/20 px-4 py-4 text-white/85 transition-all hover:border-white/20 hover:text-white sm:w-auto sm:max-w-none sm:px-7"
         >
-          <span className="font-mono text-sm">{EMAIL}</span>
+          <span className="truncate font-mono text-xs sm:text-sm">{EMAIL}</span>
           <span className="text-white/45 group-hover:text-white/50 transition-colors">
             {copied
               ? <Check size={14} className="text-emerald-400" />
@@ -82,7 +82,7 @@ export default function Contact() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
-          className="flex items-center justify-center gap-3"
+          className="flex flex-wrap items-center justify-center gap-3"
         >
           <a
             href="https://github.com/taehwan0809"

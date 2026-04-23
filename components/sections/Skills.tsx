@@ -44,7 +44,7 @@ const groups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="snap-section flex flex-col justify-center px-6 md:px-16 lg:px-24">
+    <section id="skills" className="snap-section flex flex-col justify-center px-6 py-20 md:px-16 md:py-0 lg:px-24">
       {/* Background number */}
       <div className="absolute right-8 bottom-8 text-[18vw] font-black text-white/[0.05] leading-none select-none pointer-events-none">
         SKILLS
@@ -64,7 +64,7 @@ export default function Skills() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-none mb-12 md:mb-14"
+        className="mb-10 text-4xl font-black leading-none tracking-tight md:mb-14 md:text-6xl lg:text-7xl"
       >
         기술 스택
       </motion.h2>
@@ -77,9 +77,9 @@ export default function Skills() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: gi * 0.07 }}
-            className="flex items-center gap-4 flex-wrap"
+            className="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:gap-4"
           >
-            <span className="text-[10px] font-mono text-white/40 uppercase tracking-widest w-16 flex-shrink-0">
+            <span className="w-16 flex-shrink-0 text-[10px] font-mono uppercase tracking-widest text-white/40">
               {g.label}
             </span>
             <div className="flex flex-wrap gap-2">
@@ -90,7 +90,7 @@ export default function Skills() {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.25, delay: gi * 0.07 + si * 0.04 }}
-                  className={`px-4 py-1.5 rounded-full border text-sm font-medium ${skill.color}`}
+                  className={`rounded-full border px-3 py-1.5 text-xs font-medium sm:px-4 sm:text-sm ${skill.color}`}
                 >
                   {skill.name}
                 </motion.span>

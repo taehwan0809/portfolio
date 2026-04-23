@@ -41,6 +41,18 @@ body {
   overflow: hidden;
 }
 
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .snap-section {
+    height: auto;
+    min-height: 100svh;
+    overflow: visible;
+  }
+}
+
 /* Custom scrollbar (for modals / inner scroll) */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }

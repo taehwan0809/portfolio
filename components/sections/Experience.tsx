@@ -50,9 +50,9 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="py-16 md:py-24 px-6 md:px-12">
+    <section id="experience" className="px-6 py-16 md:px-12 md:py-24">
       {/* Top bar */}
-      <div className="flex items-center justify-between mb-6 max-w-5xl mx-auto">
+      <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div>
           <p className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.3em]">Experience</p>
           <p className="text-white/40 text-xs font-mono mt-0.5">
@@ -86,10 +86,10 @@ export default function Experience() {
             animate="center"
             exit="exit"
             transition={{ duration: 0.38, ease: [0.25, 0.1, 0.25, 1] }}
-            className="glass rounded-3xl overflow-hidden grid md:grid-cols-[45%_55%] h-[420px] md:h-[460px]"
+            className="glass grid h-auto overflow-hidden rounded-3xl md:h-[460px] md:grid-cols-[45%_55%]"
           >
             {/* Left: image */}
-            <div className="relative bg-black/20 overflow-hidden group">
+            <div className="group relative h-56 overflow-hidden bg-black/20 md:h-auto">
               {images.length > 0 ? (
                 <>
                   <AnimatePresence mode="wait">
@@ -149,14 +149,14 @@ export default function Experience() {
             </div>
 
             {/* Right: info */}
-            <div className="flex flex-col justify-center px-8 md:px-10 py-8 overflow-y-auto">
+            <div className="flex flex-col justify-center overflow-y-visible px-6 py-7 md:overflow-y-auto md:px-10 md:py-8">
               {/* Type badge */}
               <div className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full ${cfg.bg} border ${cfg.border} mb-4 self-start`}>
                 <Icon size={11} className={cfg.color} />
                 <span className={`text-[10px] font-medium ${cfg.color}`}>{cfg.label}</span>
               </div>
 
-              <h2 className="text-xl md:text-2xl font-black text-white tracking-tight leading-tight mb-1.5">
+              <h2 className="mb-1.5 text-xl font-black leading-tight tracking-tight text-white md:text-2xl">
                 {exp.title}
               </h2>
 
