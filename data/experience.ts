@@ -19,6 +19,7 @@ export const experiences: Experience[] = [
       "인공지능과에서 React, Java, Python, Node.js 등 다양한 기술을 학습하며 매 학기 프로젝트에 적극적으로 참여. 미래인재 발표회 3연속 1등, 각종 교내외 대회 수상.",
     tags: ["React", "Java", "Python", "Node.js", "AI"],
     type: "education",
+    images: ["/activities/semyeong/school.jpg"],
   },
   {
     id: "nodejs-lecture",

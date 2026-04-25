@@ -6,7 +6,7 @@ import { awardsByYear, certificates } from "@/data/awards";
 
 export default function Awards() {
   return (
-    <section id="awards" className="py-16 md:py-24 px-6 md:px-16 lg:px-24">
+    <section id="awards" className="py-14 md:py-24 px-4 md:px-16 lg:px-24">
       <motion.p
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -21,13 +21,13 @@ export default function Awards() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="text-4xl md:text-6xl font-black tracking-tight leading-none mb-12"
+        className="text-[clamp(2rem,8vw,4.5rem)] font-black tracking-tight leading-tight mb-8 md:leading-none md:mb-12"
       >
         수상 &{" "}
         <span className="text-white/30">자격증</span>
       </motion.h2>
 
-      <div className="grid md:grid-cols-[1fr_260px] gap-8 max-w-5xl">
+      <div className="grid gap-6 md:grid-cols-[1fr_260px] md:gap-8 max-w-5xl">
         {/* Awards by year */}
         <div className="space-y-7">
           {awardsByYear.map((group, gi) =>

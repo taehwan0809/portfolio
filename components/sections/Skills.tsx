@@ -44,9 +44,9 @@ const groups = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="snap-section flex flex-col justify-center px-6 py-20 md:px-16 md:py-0 lg:px-24">
-      {/* Background number */}
-      <div className="absolute right-8 bottom-8 text-[18vw] font-black text-white/[0.05] leading-none select-none pointer-events-none">
+    <section id="skills" className="snap-section flex flex-col justify-center px-5 py-16 md:px-16 md:py-0 lg:px-24">
+      {/* Background number — desktop only */}
+      <div className="absolute right-8 bottom-8 hidden text-[18vw] font-black text-white/[0.05] leading-none select-none pointer-events-none md:block">
         SKILLS
       </div>
 
@@ -64,7 +64,7 @@ export default function Skills() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mb-10 text-4xl font-black leading-none tracking-tight md:mb-14 md:text-6xl lg:text-7xl"
+        className="mb-8 text-[clamp(2.25rem,8vw,5.5rem)] font-black leading-tight tracking-tight md:mb-14 md:leading-none"
       >
         기술 스택
       </motion.h2>

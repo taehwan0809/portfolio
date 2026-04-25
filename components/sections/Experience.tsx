@@ -50,7 +50,7 @@ export default function Experience() {
   };
 
   return (
-    <section id="experience" className="px-6 py-16 md:px-12 md:py-24">
+    <section id="experience" className="px-4 py-12 md:px-12 md:py-24">
       {/* Top bar */}
       <div className="mx-auto mb-6 flex max-w-5xl items-center justify-between">
         <div>
@@ -89,7 +89,7 @@ export default function Experience() {
             className="glass grid h-auto overflow-hidden rounded-3xl md:h-[460px] md:grid-cols-[45%_55%]"
           >
             {/* Left: image */}
-            <div className="group relative h-56 overflow-hidden bg-black/20 md:h-auto">
+            <div className="group relative h-44 overflow-hidden bg-black/20 md:h-auto">
               {/* Preload adjacent slide images to eliminate load delay */}
               {[-1, 1].map((offset) => {
                 const neighbor = experiences[(idx + offset + total) % total];

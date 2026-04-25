@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
 const roles = ["Creative Developer", "AI × Web Developer", "Problem Solver"];
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
@@ -16,10 +17,34 @@ export default function Hero() {
 
   return (
     <section id="hero" className="snap-section flex">
+      {/* ── Photo: full background on mobile, right column on desktop ── */}
+      <div className="absolute inset-0 md:inset-auto md:right-0 md:top-0 md:h-full md:w-[45%]">
+        {/* Mobile gradient overlay — keeps text readable */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-b from-[#312e81]/50 via-[#1e1b5e]/80 to-[#0f0e30]/98 md:hidden" />
+        {/* Desktop left-blend gradient */}
+        <div className="absolute inset-y-0 left-0 z-10 hidden w-40 bg-gradient-to-r from-[#312e81] to-transparent md:block" />
+        <div className="absolute inset-0 z-10 bg-black/20" />
+        <motion.div
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.0, delay: 0.3 }}
+          className="w-full h-full"
+        >
+          <Image
+            src={`${BASE}/main-photo.jpg`}
+            alt="박태환"
+            fill
+            priority
+            className="object-cover object-center"
+            unoptimized
+          />
+        </motion.div>
+      </div>
+
       {/* ── LEFT: text ── */}
-      <div className="relative z-10 flex w-full flex-col justify-center px-6 pb-20 pt-24 md:w-[55%] md:px-16 md:py-0 lg:px-24">
-        {/* Glow */}
-        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[140px] pointer-events-none" />
+      <div className="relative z-20 flex w-full flex-col justify-center px-6 pb-20 pt-24 md:w-[55%] md:px-16 md:py-0 lg:px-24">
+        {/* Desktop glow */}
+        <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-indigo-600/20 blur-[140px] pointer-events-none hidden md:block" />
 
         <div className="relative z-10">
           {/* Status */}
@@ -133,32 +158,12 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* ── RIGHT: photo ── */}
-      <div className="hidden md:block absolute right-0 top-0 w-[45%] h-full">
-        <div className="absolute inset-y-0 left-0 w-40 z-10 bg-gradient-to-r from-[#312e81] to-transparent" />
-        <div className="absolute inset-0 bg-black/15 z-10" />
-        <motion.div
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1.0, delay: 0.3 }}
-          className="w-full h-full"
-        >
-          <Image
-            src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/main-photo.jpg`}
-            alt="박태환"
-            fill
-            priority
-            className="object-cover object-center"
-          />
-        </motion.div>
-      </div>
-
       {/* Scroll indicator */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8 }}
-        className="absolute bottom-8 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-1 md:flex"
+        className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1"
       >
         <span className="text-[9px] font-mono text-white/40 tracking-[0.25em] uppercase">scroll</span>
         <motion.div

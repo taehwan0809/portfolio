@@ -13,14 +13,14 @@ const c = (delay = 0) => ({
 
 export default function About() {
   return (
-    <section id="about" className="snap-section flex flex-col justify-center px-6 py-20 md:px-16 md:py-0 lg:px-24">
+    <section id="about" className="snap-section flex flex-col justify-center px-4 py-16 md:px-16 md:py-0 lg:px-24">
       <motion.p {...c(0)} className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.3em] mb-5">
         About Me
       </motion.p>
 
       <motion.h2
         {...c(0.05)}
-        className="mb-8 text-4xl font-black leading-none tracking-tight md:mb-12 md:text-6xl lg:text-7xl"
+        className="mb-6 text-[clamp(2rem,8vw,5rem)] font-black leading-tight tracking-tight md:mb-12 md:leading-none"
       >
         만들고,{" "}
         <span className="text-white/40">부딪히고,</span>{" "}
@@ -28,14 +28,14 @@ export default function About() {
       </motion.h2>
 
       {/* Bento grid */}
-      <div className="grid grid-cols-2 gap-3 [grid-auto-rows:minmax(118px,auto)] md:grid-cols-4 md:[grid-auto-rows:160px]">
+      <div className="grid grid-cols-2 gap-2.5 [grid-auto-rows:minmax(100px,auto)] md:grid-cols-4 md:gap-3 md:[grid-auto-rows:160px]">
         {/* Bio — 2×2 */}
         <motion.div
           {...c(0.1)}
           className="glass relative col-span-2 row-span-2 flex flex-col overflow-hidden rounded-3xl sm:flex-row"
         >
           {/* Photo */}
-          <div className="relative h-44 flex-shrink-0 overflow-hidden bg-black/20 sm:h-auto sm:w-[34%]">
+          <div className="relative h-36 flex-shrink-0 overflow-hidden bg-black/20 sm:h-auto sm:w-[34%]">
             <Image
               src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}/whoami.png`}
               alt="박태환"
