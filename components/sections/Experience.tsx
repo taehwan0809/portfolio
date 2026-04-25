@@ -90,6 +90,22 @@ export default function Experience() {
           >
             {/* Left: image */}
             <div className="group relative h-56 overflow-hidden bg-black/20 md:h-auto">
+              {/* Preload adjacent slide images to eliminate load delay */}
+              {[-1, 1].map((offset) => {
+                const neighbor = experiences[(idx + offset + total) % total];
+                const preloadSrc = neighbor.images?.[0];
+                if (!preloadSrc) return null;
+                return (
+                  <img
+                    key={offset}
+                    src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${preloadSrc}`}
+                    className="hidden"
+                    alt=""
+                    aria-hidden="true"
+                  />
+                );
+              })}
+
               {images.length > 0 ? (
                 <>
                   <AnimatePresence mode="wait">
@@ -105,6 +121,7 @@ export default function Experience() {
                         src={`${process.env.NEXT_PUBLIC_BASE_PATH ?? ""}${images[imgIdx]}`}
                         alt={exp.title}
                         fill
+                        loading="eager"
                         className="object-cover object-center"
                         unoptimized
                       />
@@ -140,10 +157,11 @@ export default function Experience() {
                   )}
                 </>
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className={`w-20 h-20 rounded-3xl ${cfg.bg} border ${cfg.border} flex items-center justify-center opacity-40`}>
+                <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                  <div className={`w-20 h-20 rounded-3xl ${cfg.bg} border ${cfg.border} flex items-center justify-center`}>
                     <Icon size={32} className={cfg.color} />
                   </div>
+                  <p className="text-white/25 text-xs font-mono">{exp.organization}</p>
                 </div>
               )}
             </div>

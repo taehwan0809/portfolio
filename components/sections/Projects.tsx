@@ -157,7 +157,10 @@ export default function Projects() {
                   <span>⏱ {project.period}</span>
                 </div>
                 {project.role && (
-                  <p className="text-indigo-300 text-xs mb-4">나의 역할 — {project.role}</p>
+                  <div className="mb-4">
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">나의 역할 (Role)</p>
+                    <p className="text-indigo-300 text-xs">{project.role}</p>
+                  </div>
                 )}
 
                 {/* Description */}
@@ -168,7 +171,7 @@ export default function Projects() {
                 {/* Features */}
                 {"features" in project && (project as { features?: string }).features && (
                   <div className="mb-3">
-                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">기능</p>
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">기능 (Features)</p>
                     <p className="text-white/60 text-xs leading-relaxed">{(project as { features: string }).features}</p>
                   </div>
                 )}
@@ -176,7 +179,7 @@ export default function Projects() {
                 {/* Challenge */}
                 {"challenge" in project && (project as { challenge?: string }).challenge && (
                   <div className="mb-4">
-                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">어려움 & 해결</p>
+                    <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest mb-1">Troubleshooting</p>
                     <p className="text-white/60 text-xs leading-relaxed">{(project as { challenge: string }).challenge}</p>
                   </div>
                 )}
