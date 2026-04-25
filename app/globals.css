@@ -51,6 +51,13 @@ body {
     min-height: 100svh;
     overflow: visible;
   }
+
+  /* Projects section always fits in one screen on mobile */
+  #projects {
+    height: 100svh !important;
+    min-height: unset;
+    overflow: hidden;
+  }
 }
 
 /* Custom scrollbar (for modals / inner scroll) */
