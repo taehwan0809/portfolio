@@ -53,7 +53,7 @@ export default function Projects() {
       style={{ height: "100svh" }}
     >
       {/* ── Top bar ── */}
-      <div className="flex flex-shrink-0 items-center px-5 pb-2 pt-16 md:px-12 md:pb-5">
+      <div className="flex flex-shrink-0 items-center px-5 pb-2 pt-16 md:px-12 md:pb-5 md:mx-0">
         <div>
           <p className="text-[10px] font-mono text-indigo-400 uppercase tracking-[0.3em]">Projects</p>
           <p className="text-white/40 text-xs font-mono mt-0.5">
@@ -74,18 +74,15 @@ export default function Projects() {
           animate="center"
           exit="exit"
           transition={{ duration: 0.32, ease: [0.25, 0.1, 0.25, 1] }}
-          className="flex flex-1 flex-col overflow-hidden md:hidden"
+          className="mx-4 mb-2 flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl md:hidden"
         >
           {/* ── Image (fixed proportion ~38%) ── */}
-          <div className="relative flex-[0_0_38%] overflow-hidden px-4 pb-2">
-            <div
-              className="relative h-full w-full overflow-hidden rounded-2xl"
-              style={{ background: "rgba(0,0,0,0.25)" }}
-            >
+          <div className="relative flex-[0_0_38%] overflow-hidden rounded-t-3xl">
+            <div className="relative h-full w-full overflow-hidden">
               {/* accent glow */}
               <div
-                className="absolute inset-0 z-10 pointer-events-none opacity-20"
-                style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}55, transparent 70%)` }}
+                className="absolute inset-0 z-10 pointer-events-none opacity-25"
+                style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}66, transparent 70%)` }}
               />
               <AnimatePresence mode="wait">
                 <motion.div
@@ -136,7 +133,7 @@ export default function Projects() {
           </div>
 
           {/* ── Info panel (fills remaining space, internal scroll) ── */}
-          <div className="flex flex-1 flex-col overflow-hidden px-4">
+          <div className="flex flex-1 flex-col overflow-hidden px-4 pt-1">
             {/* Title + meta */}
             <div className="flex-shrink-0 pb-2">
               <h2 className="text-lg font-black leading-tight tracking-tight text-white">
@@ -330,7 +327,7 @@ export default function Projects() {
       </div>
 
       {/* ── Bottom navigation ── */}
-      <div className="flex-shrink-0 px-5 py-3 md:py-5">
+      <div className="flex-shrink-0 px-5 py-2.5 md:py-5">
         <div className="mx-auto flex w-fit items-center gap-4 rounded-full border border-white/10 bg-black/25 px-4 py-2 backdrop-blur-md">
           <button onClick={prevProject} aria-label="이전 프로젝트"
             className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-black hover:bg-white/90 transition-all md:h-11 md:w-11">
