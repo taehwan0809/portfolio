@@ -77,53 +77,49 @@ export default function Projects() {
           className="mx-4 mb-2 flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl md:hidden"
         >
           {/* ── Image (fixed proportion ~38%) ── */}
-          <div className="relative flex-[0_0_38%] rounded-t-3xl">
-            {/* overflow-hidden only on image layer so buttons aren't clipped */}
-            <div className="absolute inset-0 overflow-hidden rounded-t-3xl pointer-events-none">
-              <div
-                className="absolute inset-0 z-10 opacity-25"
-                style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}66, transparent 70%)` }}
-              />
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={imgIdx}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute inset-0"
-                >
-                  <Image
-                    src={`${BASE}${project.images[imgIdx]}`}
-                    alt={`${project.title} ${imgIdx + 1}`}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </motion.div>
-              </AnimatePresence>
-            </div>
+          <div className="relative flex-[0_0_38%] overflow-hidden rounded-t-3xl">
+            {/* accent glow */}
+            <div
+              className="absolute inset-0 z-10 pointer-events-none opacity-25"
+              style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}66, transparent 70%)` }}
+            />
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={imgIdx}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0"
+              >
+                <Image
+                  src={`${BASE}${project.images[imgIdx]}`}
+                  alt={`${project.title} ${imgIdx + 1}`}
+                  fill
+                  className="object-contain"
+                  unoptimized
+                />
+              </motion.div>
+            </AnimatePresence>
 
-            {/* buttons outside overflow-hidden — always clickable */}
+            {/* Left/right tap zones — split-screen tap to navigate */}
             {imageTotal > 1 && (
               <>
                 <button
                   onClick={() => setImgIdx((i) => (i - 1 + imageTotal) % imageTotal)}
-                  className="absolute left-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
-                >
-                  <ChevronLeft size={14} />
-                </button>
+                  aria-label="이전 사진"
+                  className="absolute inset-y-0 left-0 z-20 w-1/2"
+                />
                 <button
                   onClick={() => setImgIdx((i) => (i + 1) % imageTotal)}
-                  className="absolute right-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
-                >
-                  <ChevronRight size={14} />
-                </button>
-                <div className="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 flex gap-1">
+                  aria-label="다음 사진"
+                  className="absolute inset-y-0 right-0 z-20 w-1/2"
+                />
+                {/* dot indicators (decorative only) */}
+                <div className="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 flex gap-1 pointer-events-none">
                   {project.images.map((_, i) => (
-                    <button
+                    <span
                       key={i}
-                      onClick={() => setImgIdx(i)}
                       className={`rounded-full transition-all ${i === imgIdx ? "w-3.5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/40"}`}
                     />
                   ))}
