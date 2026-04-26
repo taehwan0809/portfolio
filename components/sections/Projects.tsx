@@ -77,11 +77,11 @@ export default function Projects() {
           className="mx-4 mb-2 flex flex-1 flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/[0.06] backdrop-blur-xl md:hidden"
         >
           {/* ── Image (fixed proportion ~38%) ── */}
-          <div className="relative flex-[0_0_38%] overflow-hidden rounded-t-3xl">
-            <div className="relative h-full w-full overflow-hidden">
-              {/* accent glow */}
+          <div className="relative flex-[0_0_38%] rounded-t-3xl">
+            {/* overflow-hidden only on image layer so buttons aren't clipped */}
+            <div className="absolute inset-0 overflow-hidden rounded-t-3xl pointer-events-none">
               <div
-                className="absolute inset-0 z-10 pointer-events-none opacity-25"
+                className="absolute inset-0 z-10 opacity-25"
                 style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}66, transparent 70%)` }}
               />
               <AnimatePresence mode="wait">
@@ -102,34 +102,34 @@ export default function Projects() {
                   />
                 </motion.div>
               </AnimatePresence>
-
-              {/* image prev/next — overlay buttons */}
-              {imageTotal > 1 && (
-                <>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setImgIdx((i) => (i - 1 + imageTotal) % imageTotal); }}
-                    className="absolute left-2 top-1/2 z-20 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 text-white/70 backdrop-blur-sm"
-                  >
-                    <ChevronLeft size={13} />
-                  </button>
-                  <button
-                    onClick={(e) => { e.stopPropagation(); setImgIdx((i) => (i + 1) % imageTotal); }}
-                    className="absolute right-2 top-1/2 z-20 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-black/40 text-white/70 backdrop-blur-sm"
-                  >
-                    <ChevronRight size={13} />
-                  </button>
-                  <div className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 flex gap-1">
-                    {project.images.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={() => setImgIdx(i)}
-                        className={`rounded-full transition-all ${i === imgIdx ? "w-3.5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/30"}`}
-                      />
-                    ))}
-                  </div>
-                </>
-              )}
             </div>
+
+            {/* buttons outside overflow-hidden — always clickable */}
+            {imageTotal > 1 && (
+              <>
+                <button
+                  onClick={() => setImgIdx((i) => (i - 1 + imageTotal) % imageTotal)}
+                  className="absolute left-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
+                >
+                  <ChevronLeft size={14} />
+                </button>
+                <button
+                  onClick={() => setImgIdx((i) => (i + 1) % imageTotal)}
+                  className="absolute right-2 top-1/2 z-30 -translate-y-1/2 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm"
+                >
+                  <ChevronRight size={14} />
+                </button>
+                <div className="absolute bottom-2 left-1/2 z-30 -translate-x-1/2 flex gap-1">
+                  {project.images.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setImgIdx(i)}
+                      className={`rounded-full transition-all ${i === imgIdx ? "w-3.5 h-1.5 bg-white" : "w-1.5 h-1.5 bg-white/40"}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
           </div>
 
           {/* ── Info panel (fills remaining space, internal scroll) ── */}
