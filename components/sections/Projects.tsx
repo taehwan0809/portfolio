@@ -41,9 +41,9 @@ export default function Projects() {
   };
 
   const slideVariants = {
-    enter: (d: number) => ({ x: d > 0 ? "8%" : "-8%", opacity: 0 }),
-    center: { x: 0, opacity: 1 },
-    exit:  (d: number) => ({ x: d > 0 ? "-8%" : "8%", opacity: 0 }),
+    enter: (d: number) => ({ x: d > 0 ? "8%" : "-8%", opacity: 0, pointerEvents: "none" as const }),
+    center: { x: 0, opacity: 1, pointerEvents: "auto" as const },
+    exit:  (d: number) => ({ x: d > 0 ? "-8%" : "8%", opacity: 0, pointerEvents: "none" as const }),
   };
 
   return (
@@ -235,7 +235,7 @@ export default function Projects() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.25 }}
-                    className="absolute inset-0"
+                    className="absolute inset-0 pointer-events-none"
                   >
                     <Image
                       src={`${BASE}${project.images[imgIdx]}`}
@@ -249,13 +249,19 @@ export default function Projects() {
               </div>
               {imageTotal > 1 && (
                 <div className="mt-3 flex items-center justify-center gap-3">
-                  <button onClick={() => setImgIdx((i) => (i - 1 + imageTotal) % imageTotal)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all">
+                  <button
+                    type="button"
+                    onClick={() => setImgIdx((i) => (i - 1 + imageTotal) % imageTotal)}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all"
+                  >
                     <ChevronLeft size={13} />
                   </button>
                   <span className="font-mono text-[11px] text-white/35">{imgIdx + 1} / {imageTotal}</span>
-                  <button onClick={() => setImgIdx((i) => (i + 1) % imageTotal)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all">
+                  <button
+                    type="button"
+                    onClick={() => setImgIdx((i) => (i + 1) % imageTotal)}
+                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all"
+                  >
                     <ChevronRight size={13} />
                   </button>
                 </div>
