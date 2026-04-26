@@ -221,48 +221,45 @@ export default function Projects() {
             transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             className="grid min-h-0 flex-1 grid-cols-[55%_45%]"
           >
-            {/* Left: image carousel */}
+            {/* Left: image + nav — nav lives OUTSIDE any motion/animated container */}
             <div className="flex flex-col justify-center bg-black/20 px-10 pb-10">
+              {/* Image box — pure CSS fade, no Framer Motion */}
               <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[28px] bg-black/30">
                 <div
-                  className="absolute inset-0 z-10 pointer-events-none opacity-20"
+                  className="absolute inset-0 pointer-events-none opacity-20"
                   style={{ background: `radial-gradient(ellipse at center, ${project.accentColor}33, transparent 70%)` }}
                 />
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={imgIdx}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
-                    className="absolute inset-0 pointer-events-none"
-                  >
-                    <Image
-                      src={`${BASE}${project.images[imgIdx]}`}
-                      alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                    />
-                  </motion.div>
-                </AnimatePresence>
+                <div className="absolute inset-0 pointer-events-none" style={{ transition: "opacity 0.25s" }}>
+                  <Image
+                    key={`${project.id}-${imgIdx}`}
+                    src={`${BASE}${project.images[imgIdx]}`}
+                    alt={`${project.title} 스크린샷 ${imgIdx + 1}`}
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
+                </div>
               </div>
+
+              {/* Nav buttons — plain DOM, no AnimatePresence, no motion */}
               {imageTotal > 1 && (
-                <div className="mt-3 flex items-center justify-center gap-3">
+                <div className="relative z-50 mt-3 flex items-center justify-center gap-3">
                   <button
                     type="button"
                     onClick={() => setImgIdx((i) => (i - 1 + imageTotal) % imageTotal)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all"
+                    className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/60 hover:bg-white/20 hover:text-white transition-all"
                   >
-                    <ChevronLeft size={13} />
+                    <ChevronLeft size={15} />
                   </button>
-                  <span className="font-mono text-[11px] text-white/35">{imgIdx + 1} / {imageTotal}</span>
+                  <span className="min-w-[52px] text-center font-mono text-xs text-white/50">
+                    {imgIdx + 1} / {imageTotal}
+                  </span>
                   <button
                     type="button"
                     onClick={() => setImgIdx((i) => (i + 1) % imageTotal)}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/[0.04] text-white/30 hover:bg-white/[0.08] hover:text-white/60 transition-all"
+                    className="cursor-pointer flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/60 hover:bg-white/20 hover:text-white transition-all"
                   >
-                    <ChevronRight size={13} />
+                    <ChevronRight size={15} />
                   </button>
                 </div>
               )}
