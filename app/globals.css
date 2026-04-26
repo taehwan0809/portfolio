@@ -54,7 +54,7 @@ body {
 
   /* Projects section always fits in one screen on mobile */
   #projects {
-    height: 100svh !important;
+    height: 100dvh !important;
     min-height: unset;
     overflow: hidden;
   }

@@ -49,8 +49,8 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="relative flex flex-col"
-      style={{ height: "100svh" }}
+      className="relative flex flex-col overflow-hidden"
+      style={{ height: "100dvh" }}
     >
       {/* ── Top bar ── */}
       <div className="flex flex-shrink-0 items-center px-5 pb-2 pt-16 md:px-12 md:pb-5 md:mx-0">
