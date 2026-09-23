@@ -178,6 +178,16 @@ export const experiences: Experience[] = [
     ],
   },
   {
+    id: "department-representative",
+    title: "인공지능소프트웨어과 학과 대표",
+    organization: "세명컴퓨터고등학교 인공지능소프트웨어과",
+    period: "2026 ~ 현재",
+    description:
+      "학과 대표로서 학생들의 목소리를 모아 선생님과 학우들 사이를 잇고, 학과의 크고 작은 활동을 주도적으로 이끌고 있습니다. 서로 다른 의견을 조율해 모두가 함께 참여할 수 있는 환경을 만들며, 책임감 있는 소통과 실천으로 학과 공동체의 성장에 기여하고 있습니다.",
+    tags: ["학생 대표", "리더십", "소통", "협업"],
+    type: "activity",
+    images: ["/activities/department-representative.png"],
+  },  {
     id: "ai-hackathon",
     title: "AI 해커톤 인기상 수상",
     organization: "AI 해커톤",
